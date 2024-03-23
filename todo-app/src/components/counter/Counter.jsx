@@ -3,12 +3,10 @@ import PropTypes from "prop-types";
 import "./Counter.css";
 
 export default function Counter() {
+  const [count, setCount] = useState(0);
+
   function incrementCounterParent(by) {
     setCount(count + by);
-  }
-
-  function someMethodInParent() {
-    console.log("parent method called");
   }
 
   return (
@@ -16,33 +14,31 @@ export default function Counter() {
       <span className="TotalCount">{count}</span>
       <CounterButton
         by={1}
-        someMethodInParent={someMethodInParent}
+        someMethodInParent={incrementCounterParent}
       ></CounterButton>
       <CounterButton
         by={2}
-        someMethodInParent={someMethodInParent}
+        someMethodInParent={incrementCounterParent}
       ></CounterButton>
       <CounterButton
         by={5}
-        someMethodInParent={someMethodInParent}
+        someMethodInParent={incrementCounterParent}
       ></CounterButton>
     </div>
   );
 }
 
-function CounterButton({ by, someMethodInParent }) {
+function CounterButton({ by, incrementCounterParent }) {
   const [count, setCount] = useState(0);
 
   function incrementCounter() {
     setCount(count + by);
-    someMethodInParent();
-    console.log(count);
+    incrementCounterParent();
   }
 
   function decrementCounter() {
     setCount(count - by);
-    someMethodInParent();
-    console.log(count);
+    incrementCounterParent();
   }
 
   return (
