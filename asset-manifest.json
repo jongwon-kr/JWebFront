@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/SpringAndReactApplication/login/static/css/main.1c597d26.css",
-    "main.js": "/SpringAndReactApplication/login/static/js/main.de908596.js",
-    "static/js/453.c71a4e89.chunk.js": "/SpringAndReactApplication/login/static/js/453.c71a4e89.chunk.js",
-    "index.html": "/SpringAndReactApplication/login/index.html",
-    "main.1c597d26.css.map": "/SpringAndReactApplication/login/static/css/main.1c597d26.css.map",
-    "main.de908596.js.map": "/SpringAndReactApplication/login/static/js/main.de908596.js.map",
-    "453.c71a4e89.chunk.js.map": "/SpringAndReactApplication/login/static/js/453.c71a4e89.chunk.js.map"
+    "main.css": "/SpringAndReactApplication/static/css/main.1c597d26.css",
+    "main.js": "/SpringAndReactApplication/static/js/main.2ae8dbbc.js",
+    "static/js/453.c71a4e89.chunk.js": "/SpringAndReactApplication/static/js/453.c71a4e89.chunk.js",
+    "index.html": "/SpringAndReactApplication/index.html",
+    "main.1c597d26.css.map": "/SpringAndReactApplication/static/css/main.1c597d26.css.map",
+    "main.2ae8dbbc.js.map": "/SpringAndReactApplication/static/js/main.2ae8dbbc.js.map",
+    "453.c71a4e89.chunk.js.map": "/SpringAndReactApplication/static/js/453.c71a4e89.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.1c597d26.css",
-    "static/js/main.de908596.js"
+    "static/js/main.2ae8dbbc.js"
   ]
 }
