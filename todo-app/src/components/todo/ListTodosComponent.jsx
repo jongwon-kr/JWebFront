@@ -4,12 +4,16 @@ import {
   deleteTodoByIdApi,
 } from "./api/TodoApiService";
 import { useAuth } from "./security/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export function ListTodosComponent() {
   const [todos, setTodos] = useState([]);
 
   const authContext = useAuth();
+
   const username = authContext.username;
+
+  const navigate = useNavigate();
 
   const [message, setMessage] = useState(null);
 
@@ -30,6 +34,10 @@ export function ListTodosComponent() {
         refreshTodos();
       })
       .catch((error) => console.log(error));
+  }
+
+  function updateTodo(id) {
+    navigate(`/todo/${id}`);
   }
 
   return (
@@ -57,6 +65,14 @@ export function ListTodosComponent() {
                     onClick={() => deleteTodo(todo.id)}
                   >
                     Delete
+                  </button>
+                </td>
+                <td>
+                  <button
+                    className="btn btn-success"
+                    onClick={() => updateTodo(todo.id)}
+                  >
+                    Update
                   </button>
                 </td>
               </tr>
