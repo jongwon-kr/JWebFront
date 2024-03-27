@@ -1,8 +1,13 @@
-import { useParams } from "react-router-dom";
-import { retrieveTodoByIdApi } from "./api/TodoApiService";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  createTodoApi,
+  retrieveTodoByIdApi,
+  updateTodoApi,
+} from "./api/TodoApiService";
 import { useAuth } from "./security/AuthContext";
 import { useEffect, useState } from "react";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import moment from "moment";
 
 export function TodoComponent() {
   const { id } = useParams();
@@ -11,26 +16,65 @@ export function TodoComponent() {
   const [targetDate, setTargetDate] = useState("");
 
   const authContext = useAuth();
+  const navigate = useNavigate();
 
   const username = authContext.username;
 
   useEffect(() => retrieveTodos(), [id]);
 
   function retrieveTodos() {
-    retrieveTodoByIdApi(username, id)
-      .then((response) => {
-        setDescription(response.data.description);
-        setTargetDate(response.data.targetDate);
-      })
-      .catch((error) => console.log(error));
+    if (id != -1) {
+      retrieveTodoByIdApi(username, id)
+        .then((response) => {
+          setDescription(response.data.description);
+          setTargetDate(response.data.targetDate);
+        })
+        .catch((error) => console.log(error));
+    }
   }
 
   function onsubmit(values) {
-    console.log(values);
+    const todo = {
+      id: id,
+      username: username,
+      description: values.description,
+      targetDate: values.targetDate,
+      done: false,
+    };
+
+    console.log(todo);
+    if (id == -1) {
+      createTodoApi(username, todo)
+        .then((response) => {
+          navigate("/todos");
+        })
+        .catch((error) => console.log(error));
+    } else {
+      updateTodoApi(username, id, todo)
+        .then((response) => {
+          navigate("/todos");
+        })
+        .catch((error) => console.log(error));
+    }
   }
 
   function validate(values) {
+    let errors = {};
+
+    if (values.description.length < 5) {
+      errors.description = "Enter atleast 5 characters";
+    }
+
+    if (
+      values.targetDate == null ||
+      values.targetDate == "" ||
+      !moment(values.targetDate).isValid
+    ) {
+      errors.targetDate = "Enter a target date";
+    }
+
     console.log(values);
+    return errors;
   }
 
   return (
@@ -42,9 +86,21 @@ export function TodoComponent() {
           enableReinitialize={true}
           onSubmit={onsubmit}
           validate={validate}
+          validateOnChange={false}
+          validateOnBlur={false}
         >
           {(props) => (
             <Form>
+              <ErrorMessage
+                name="description"
+                component="div"
+                className="alert alert-warning"
+              ></ErrorMessage>
+              <ErrorMessage
+                name="targetDate"
+                component="div"
+                className="alert alert-warning"
+              ></ErrorMessage>
               <fieldset className="form-group">
                 <label>Description</label>
                 <Field
