@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/SpringAndReactApplication/static/css/main.1c597d26.css",
-    "main.js": "/SpringAndReactApplication/static/js/main.2ae8dbbc.js",
-    "static/js/453.c71a4e89.chunk.js": "/SpringAndReactApplication/static/js/453.c71a4e89.chunk.js",
-    "index.html": "/SpringAndReactApplication/index.html",
-    "main.1c597d26.css.map": "/SpringAndReactApplication/static/css/main.1c597d26.css.map",
-    "main.2ae8dbbc.js.map": "/SpringAndReactApplication/static/js/main.2ae8dbbc.js.map",
-    "453.c71a4e89.chunk.js.map": "/SpringAndReactApplication/static/js/453.c71a4e89.chunk.js.map"
+    "main.css": "/SpringAndReactApplication/tree/main/todo-app/static/css/main.1c597d26.css",
+    "main.js": "/SpringAndReactApplication/tree/main/todo-app/static/js/main.f8e6f83e.js",
+    "static/js/453.c71a4e89.chunk.js": "/SpringAndReactApplication/tree/main/todo-app/static/js/453.c71a4e89.chunk.js",
+    "index.html": "/SpringAndReactApplication/tree/main/todo-app/index.html",
+    "main.1c597d26.css.map": "/SpringAndReactApplication/tree/main/todo-app/static/css/main.1c597d26.css.map",
+    "main.f8e6f83e.js.map": "/SpringAndReactApplication/tree/main/todo-app/static/js/main.f8e6f83e.js.map",
+    "453.c71a4e89.chunk.js.map": "/SpringAndReactApplication/tree/main/todo-app/static/js/453.c71a4e89.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.1c597d26.css",
-    "static/js/main.2ae8dbbc.js"
+    "static/js/main.f8e6f83e.js"
   ]
 }
