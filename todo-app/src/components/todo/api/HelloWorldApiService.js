@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiClient = axios.create(
-    { baseURL: "http://222.119.233.177:8080" }
+    { baseURL: "http://localhost:8080" }
 )
 
 export const retrieveHelloWorldBean = () => apiClient.get("/hello-world-bean")
