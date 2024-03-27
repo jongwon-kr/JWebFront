@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./security/AuthContext";
-import { login } from "./security/AuthContext.js";
 
 export function LoginComponent() {
   const [username, setUsername] = useState("");
@@ -22,8 +21,8 @@ export function LoginComponent() {
     setPassword(event.target.value);
   }
 
-  function handleSubmit() {
-    if (authContext.login(username, password)) {
+  async function handleSubmit() {
+    if (await authContext.login(username, password)) {
       navigate(`/welcome/${username}`);
     } else {
       setshowErrorMessage(true);

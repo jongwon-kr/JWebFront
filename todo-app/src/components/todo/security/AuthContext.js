@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { executeBasicAuthenticationService } from "../api/HelloWorldApiService";
+import { apiClient } from "../api/ApiClient";
 
 // Create a Context
 export const AuthContext = createContext()
@@ -15,6 +16,8 @@ export function AuthProvider({ children }) {
 
     const [username, setUsername] = useState(null)
 
+    const [token, setToken] = useState(null)
+
     // function login(username, password) {
     //     if (username === "jongwon" && password === "1234") {
     //         setAuthenticated(true);
@@ -27,32 +30,43 @@ export function AuthProvider({ children }) {
     //     }
     // }
 
-    function login(username, password) {
+    async function login(username, password) {
 
         const baToken = "Basic " + window.btoa(username + ":" + password)
+        try {
+            const response = await executeBasicAuthenticationService(baToken)
 
-        executeBasicAuthenticationService(baToken)
-            .then(response => console.log(response))
-            .catch(error => console.log(error))
+            if (response.status === 200) {
+                setAuthenticated(true);
+                setUsername(username);
+                setToken(baToken)
 
-        setAuthenticated(false)
+                apiClient.interceptors.request.use(
+                    (config) => {
+                        console.log('interception and adding a token')
+                        config.headers.Authorization = baToken
+                        return config
+                    }
+                )
 
-        // if (username === "jongwon" && password === "1234") {
-        //     setAuthenticated(true);
-        //     setUsername(username);
-        //     return true
-        // } else {
-        //     setAuthenticated(false);
-        //     setUsername(null);
-        //     return false
-        // }
+                return true
+            } else {
+                logout()
+                return false
+            }
+        } catch (error) {
+            logout()
+            return false
+        }
     }
 
     function logout() {
         setAuthenticated(false);
+        setToken(null)
+        setUsername(null)
     }
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, login, logout, username }}> {children}</AuthContext.Provider >
+        <AuthContext.Provider value={{ isAuthenticated, login, logout, username, token }}> {children}</AuthContext.Provider >
     )
 }
