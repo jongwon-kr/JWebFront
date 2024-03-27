@@ -25,7 +25,13 @@ export function TodoComponent() {
       .catch((error) => console.log(error));
   }
 
-  function onsubmit(values) {}
+  function onsubmit(values) {
+    console.log(values);
+  }
+
+  function validate(values) {
+    console.log(values);
+  }
 
   return (
     <div className="container">
@@ -35,6 +41,7 @@ export function TodoComponent() {
           initialValues={{ description, targetDate }}
           enableReinitialize={true}
           onSubmit={onsubmit}
+          validate={validate}
         >
           {(props) => (
             <Form>
