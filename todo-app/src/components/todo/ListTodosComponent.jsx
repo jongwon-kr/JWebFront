@@ -37,6 +37,7 @@ export function ListTodosComponent() {
   }
 
   function updateTodo(id) {
+    refreshTodos();
     navigate(`/todo/${id}`);
   }
 
