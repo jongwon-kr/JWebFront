@@ -10,10 +10,12 @@ import { WelcomeComponent } from "./WelcomeComponent";
 import { LoginComponent } from "./LoginComponent";
 import { AuthProvider, useAuth } from "./security/AuthContext";
 import { TodoComponent } from "./TodoComponent";
+import { ListTrendsComponent } from "./ListTrendComponent";
+
 function AuthenticatedRoute({ children }) {
   const authContext = useAuth();
   if (authContext.isAuthenticated) return children;
-  return <Navigate to={"/"}></Navigate>;
+  <Navigate to={"/"}></Navigate>;
 }
 
 export default function TodoApp() {
@@ -25,14 +27,7 @@ export default function TodoApp() {
           <Routes>
             <Route path="/" element={<LoginComponent />} />
             <Route path="/login" element={<LoginComponent />} />
-            <Route
-              path="/welcome/:username"
-              element={
-                <AuthenticatedRoute>
-                  <WelcomeComponent />
-                </AuthenticatedRoute>
-              }
-            />
+            <Route path="/welcome/:username" element={<WelcomeComponent />} />
             <Route path="*" element={<ErrorComponent />} />
             <Route
               path="/todos"
@@ -50,13 +45,10 @@ export default function TodoApp() {
                 </AuthenticatedRoute>
               }
             />
+            <Route path="/logout" element={<LogoutComponent />} />
             <Route
-              path="/logout"
-              element={
-                <AuthenticatedRoute>
-                  <LogoutComponent />
-                </AuthenticatedRoute>
-              }
+              path="/trend"
+              element={<ListTrendsComponent></ListTrendsComponent>}
             />
           </Routes>
         </BrowserRouter>

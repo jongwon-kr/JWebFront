@@ -11,7 +11,6 @@ import moment from "moment";
 
 export function TodoComponent() {
   const { id } = useParams();
-
   const [description, setDescription] = useState("");
   const [targetDate, setTargetDate] = useState("");
 
@@ -62,7 +61,7 @@ export function TodoComponent() {
     let errors = {};
 
     if (values.description.length < 5) {
-      errors.description = "Enter atleast 5 characters";
+      errors.description = "글자가 너무 적어요(5글자이상)";
     }
 
     if (
@@ -70,7 +69,7 @@ export function TodoComponent() {
       values.targetDate == "" ||
       !moment(values.targetDate).isValid
     ) {
-      errors.targetDate = "Enter a target date";
+      errors.targetDate = "작성 날짜를 입력해주세요.";
     }
 
     console.log(values);
@@ -79,7 +78,7 @@ export function TodoComponent() {
 
   return (
     <div className="container">
-      <h1>Enter Todo Detaiols</h1>
+      <h1 style={{ fontWeight: "bold" }}>할 일과 날짜를 입력해주세요</h1>
       <div>
         <Formik
           initialValues={{ description, targetDate }}
@@ -94,15 +93,15 @@ export function TodoComponent() {
               <ErrorMessage
                 name="description"
                 component="div"
-                className="alert alert-warning"
+                className="alert alert-warning font-weight-bold"
               ></ErrorMessage>
               <ErrorMessage
                 name="targetDate"
                 component="div"
-                className="alert alert-warning"
+                className="alert alert-warning font-weight-bold"
               ></ErrorMessage>
               <fieldset className="form-group">
-                <label>Description</label>
+                <label className="font-weight-bold">할 일</label>
                 <Field
                   type="text"
                   className="form-control"
@@ -110,12 +109,12 @@ export function TodoComponent() {
                 />
               </fieldset>
               <fieldset className="form-group">
-                <label>Target Date</label>
+                <label className="font-weight-bold">작성 날짜</label>
                 <Field type="date" className="form-control" name="targetDate" />
               </fieldset>
               <div>
                 <button className="btn btn-success m-5" type="submit">
-                  Save
+                  저장
                 </button>
               </div>
             </Form>

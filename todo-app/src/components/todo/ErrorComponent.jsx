@@ -1,8 +1,8 @@
 export function ErrorComponent() {
   return (
     <div className="ErrorComponent">
-      <h1>We are working really hard!</h1>
-      <div>Apologies for the 404. Reach out to our team at 010-0000-0000</div>
+      <h1>찾을 수 없는 페이지</h1>
+      <div>관리자에게 연락하십시오.</div>
     </div>
   );
 }

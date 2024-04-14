@@ -1,13 +1,84 @@
-label,
-input,
-button {
-  margin: 10px;
-  padding: 5px;
-}
+.TodoApp {
+  display: flex;
+  flex-direction: column;
+  justify-content: grid;
+  flex-wrap: wrap;
+  label,
+  input,
+  button {
+    margin: 5px;
+    padding: 5px;
+  }
+  .message {
+    opacity: 1;
+    transition: opacity 1s ease;
+  }
 
-footer {
-  bottom: 0;
-  position: absolute;
-  width: 90%;
-  height: 40px;
+  .message.fade-out {
+    opacity: 0;
+  }
+
+  .bg-navy {
+    background-color: navy;
+  }
+  .header {
+    height: 80px; /* 원하는 높이로 조정하세요 */
+  }
+
+  .nav-link:hover {
+    color: grey !important;
+    transition: color 0.3s;
+  }
+  .chart-container {
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    background-color: #ffffff;
+    width: 620px;
+    height: 480px;
+    padding: 16px 6px 16px 16px;
+    .chart-title {
+      margin: 0;
+      color: #252525;
+      padding-bottom: 10px;
+      font-size: 2.2rem;
+    }
+    .coin-chart {
+      display: flex;
+      flex: 1;
+    }
+    .chart-menu-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-top: 10px;
+      font-size: 12px;
+      color: #606060;
+      button {
+        cursor: pointer;
+        background-color: #2196f3;
+        border-radius: 2px;
+        margin-right: 8px;
+        height: 24px;
+        line-height: 26px;
+        padding: 0 6px;
+        font-size: 12px;
+        color: #fff;
+        border: none;
+        outline: none;
+      }
+    }
+  }
+  .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #f8f9fa; /* 선택한 배경색 */
+    color: #333; /* 선택한 텍스트 색상 */
+    text-align: center;
+    padding: 10px 0; /* 선택한 내부 여백 */
+  }
 }
