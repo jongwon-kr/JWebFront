@@ -74,7 +74,7 @@ export function WelcomeComponent() {
           <>
             <p>
               {weatherData.name} / {weatherData.weather[0].description} /{" "}
-              {weatherData.main.temp} °C
+              {weatherData.main.temp.toFixed(1)} °C
             </p>
           </>
         )}
