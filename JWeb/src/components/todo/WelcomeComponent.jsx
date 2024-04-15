@@ -1,6 +1,40 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useAuth } from "./security/AuthContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faGoogle,
+  faFacebook,
+  faAws,
+  faBitcoin,
+} from "@fortawesome/free-brands-svg-icons";
+
+const sites = [
+  {
+    name: "Google",
+    url: "https://www.google.com",
+    icon: faGoogle,
+    color: "#4285F4",
+  },
+  {
+    name: "Google",
+    url: "https://aws.amazon.com",
+    icon: faAws,
+    color: "#FF9900",
+  },
+  {
+    name: "Twitter",
+    url: "https://upbit.com",
+    icon: faBitcoin,
+    color: "#1DA1F2",
+  },
+  {
+    name: "Facebook",
+    url: "https://www.facebook.com",
+    icon: faFacebook,
+    color: "#1877F2",
+  },
+];
 
 const quotes = [
   "삶은 우리가 만드는 것입니다.",
@@ -68,8 +102,11 @@ export function WelcomeComponent() {
   }
 
   return (
-    <div className="WelcomeComponent">
-      <div className="weather-info">
+    <div className="WelcomeComponent" style={{ marginTop: "-40px" }}>
+      <div
+        className="weather-info"
+        style={{ marginLeft: "1050px", marginBottom: "100px" }}
+      >
         {weatherData && (
           <>
             <p>
@@ -79,14 +116,31 @@ export function WelcomeComponent() {
           </>
         )}
       </div>
-      <h1>
+      <h1 style={{ fontSize: "4rem", fontWeight: "bold" }}>
         {currentHour}:{currentMinute}
       </h1>
-      <h3 style={{ opacity: quoteOpacity }}>
+      <h3
+        style={{ opacity: quoteOpacity, marginTop: "50px", fontSize: "2rem" }}
+      >
         {authContext.isAuthenticated
           ? `어서오세요 ${username}님`
           : quotes[quoteIndex]}
       </h3>
+      <div style={{ marginTop: "100px" }}>
+        {sites.map((site, index) => (
+          <a
+            key={index}
+            href={site.url}
+            style={{
+              marginRight: "30px",
+              marginLeft: "20px",
+              color: site.color,
+            }}
+          >
+            <FontAwesomeIcon icon={site.icon} size="2x" />
+          </a>
+        ))}
+      </div>
     </div>
   );
 }

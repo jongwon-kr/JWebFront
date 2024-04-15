@@ -67,10 +67,14 @@ export function ListTodosComponent() {
           <tbody>
             {todos.map((todo) => (
               <tr key={todo.id}>
-                <td>{todo.description}</td>
-                <td>{todo.done ? "O" : "X"}</td>
-                <td>{todo.targetDate.toString()}</td>
-                <td>
+                <td style={{ verticalAlign: "middle" }}>{todo.description}</td>
+                <td style={{ verticalAlign: "middle" }}>
+                  {todo.done ? "O" : "X"}
+                </td>
+                <td style={{ verticalAlign: "middle" }}>
+                  {todo.targetDate.toString()}
+                </td>
+                <td style={{ verticalAlign: "middle" }}>
                   <button
                     className="btn btn-danger"
                     onClick={() => deleteTodo(todo.id, todo.description)}
